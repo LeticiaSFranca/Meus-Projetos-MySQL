@@ -1,0 +1,120 @@
+<h1>Atividade em Sala</h1>
+<h2>Criação de um Banco de Dados de um Hospital</h2>
+
+create database HOSPITAL_2E1_29; -- Questão A
+use HOSPITAL_2E1_29;
+
+create table medico(
+cod_med int not null primary key auto_increment,
+nome varchar(80) not null,
+especialidade varchar(45) not null
+);
+
+create table paciente(
+cod_paciente int not null primary key auto_increment,
+nome varchar(80) not null,
+dt_nasc date not null,
+peso float(3,3) not null,
+altura_cm int not null,
+sintomas varchar(200) not null
+);
+
+create table consulta(
+cod_consulta int not null primary key auto_increment,
+dt_consulta date not null,
+medico_cod_med int not null,
+foreign key (medico_cod_med) references cod_med(cod_med),
+paciente_cod_paciente int not null,
+foreign key (paciente_cod_paciente) references cod_paciente(cod_paciente)
+);
+
+create table medicamento(
+cod_medicamento int not null primary key auto_increment,
+nome_med varchar(45),
+modo_uso varchar(80)
+);
+
+create table prescricao(
+cod_pres int not null primary key auto_increment,
+observacao text not null,
+dosagem varchar(60) not null,
+medicamento_cod_medicamento int not null,
+foreign key (medicamento_cod_medicamento) references cod_medicamento(cod_medicamento),
+consulta_cod_consulta int not null,
+foreign key (consulta_cod_consulta) references cod_consulta(cod_consulta)
+);
+
+select * from medico; -- Questão B
+insert into medico(nome, especialidade) values
+("Aline Aguiar", "padiatra"),
+("Bernardo Bernardes", "dentista"),
+("Carlos Cretas", "Cirurgião"),
+("Camila Fernandes", "Cirurgiã Plástica"),
+("Ana Castela", "Ortopedista");
+
+delete from medico where especialidade = 'Cirurgiã Plástica'; -- Questão C
+delete from medico where especialidade = 'Ortopedista'; -- Questão C
+
+update medico set nome = 'Carlos Cretas' where 'Otorrino'; -- Questão D
+
+select * from medico nome; -- Questão E
+
+select * from prescricao; -- Questão B
+insert into prescricao(observacao, dosagem, medicamento_cod_medicamento, consulta_cod_consulta) values
+("Repouso", "de 8 em 8 horas", 1, 1),
+("Atestado", "de 8 em 8 horas", 2, 2),
+("Repouso", "de 8 em 8 horas", 3, 3),
+("Atestado", "de 8 em 8 horas", 4, 4),
+("Repouso", "de 8 em 8 horas", 5, 5);
+
+delete from prescricao where observacao = 'Repouso'; -- Questão C
+delete from prescricao where observacao = 'Atestado'; -- Questão C
+
+update prescricao set observacao = 'Repouso' where 'de 8 em 8 horas'; -- Questão D
+
+select * from prescricao observacao; -- Questão E
+
+select * from consulta; -- Questão B
+insert into consulta(dt_consulta, medico_cod_med, paciente_cod_paciente) values
+("2023/03/17", 1, 1),
+("2023/03/18", 2, 2),
+("2023/03/19", 3, 3),
+("2023/03/20", 4, 4),
+("2023/03/21", 5, 5);
+
+delete from consulta where dt_consulta = '2023/03/17'; -- Questão C
+delete from consulta where dt_consulta = '2023/03/18'; -- Questão C
+
+update consulta set observacao = 'Repouso' where 'de 8 em 8 horas'; -- Questão D
+
+select * from consulta dt_consulta; -- Questão E
+
+select * from paciente; -- Questão B
+insert into paciente(nome, dt_nasc, peso, altura_cm, sintomas) values
+("Aline Aguiar", "2023/03/17", 123.123, 1, "Leucemia"),
+("Bernardo Bernardes", "2023/03/18", 124.124, 2, "Gripe"),
+("Carlos Cretas", "2023/03/19", 125.125, 3, "Catapora"),
+("Camila Fernandes", "2023/03/20", 126.126, 4, "Osso quebrado"),
+("Ana Castela", "2023/03/21", 127.127, 5, "Febre alta");
+
+delete from paciente where nome = 'Aline Aguiar'; -- Questão C
+delete from paciente where nome = 'Bernardo Bernardes'; -- Questão C
+
+update paciente set nome = 'Carlos Cretas' where '2023/03/18'; -- Questão D
+
+select * from paciente nome; -- Questão E
+
+select * from medicamento; -- Questão B
+insert into medicamento(nome_med, modo_uso) values
+("Dipirona", "Oral, de 6 em 6 horas"),
+("Ibuprofeno", "Oral, de 8 em 8 horas"),
+("Dipirona", "Oral, de 6 em 6 horas"),
+("Ibuprofeno", "Oral, de 8 em 8 horas"),
+("Dipirona", "Oral, de 6 em 6 horas");
+
+delete from medicamento where nome_med = 'Dipirona'; -- Questão C
+delete from medicamento where nome_med = 'Ibuprofeno'; -- Questão C
+
+update medicamento set nome_med = 'Dipirona' where 'Oral, de 6 em 6 horas'; -- Questão D
+
+select * from medicamento nome_med; -- Questão E
