@@ -1,5 +1,5 @@
 <h1>🌷 Atividades em Sala - MySQL 🌷</h1>
-<h3>Aqui, estão todos os meus projetos criados em sala, através de atividades passadas. Segue nomes e arquivos para consulta❤!</h3>
+<h3>Aqui, estão todos os meus projetos criados, através de atividades passadas em sala. Segue nomes e arquivos para consulta❤!</h3>
 <ul>
   <li><b>Projeto 01 -</b> Criação de um Banco de Dados de um Hospital.</li>
   <li><b>Projeto 02 -</b> Criação de um Banco de Dados de uma Floricultura.</li>
