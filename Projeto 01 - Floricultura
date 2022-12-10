@@ -1,0 +1,49 @@
+-- criar DB
+create database floricultura_2e1_aula01;
+
+-- usar o DB floricultura
+use floricultura_2e1_aula01;
+
+-- criar a TB Cliente
+create table cliente (
+rg char(13) not null primary key,
+nome varchar(80) not null,
+telefone char(15) not null,
+endereco_comp varchar(120) not null
+);
+
+-- criar a TB Produto
+create table produto (
+cod_produto int not null primary key auto_increment,
+nome varchar(80) not null,
+tipo varchar(80) not null,
+preco decimal(9,2) not null,
+qtd_estoque int not null
+);
+
+-- criar a TB item_pedido
+create table item_pedido(
+ cod_itempedido int not null primary key auto_increment,
+ quantidade int not null,
+ valor_total decimal (9,2) not null,
+ cod_produto_fk int not null,
+ foreign key (cod_produto_fk) references produto(cod_produto)
+ );
+ 
+ -- criar TB pedido
+ create table pedido(
+ cod_pedido int not null primary key auto_increment,
+ dt_compra date not null,
+ total_pedido decimal(9,2) not null,
+ rg_fk char (13) not null,
+ foreign key (rg_fk) references cliente(rg),
+ cod_itempedido_fk int not null,
+ foreign key (cod_itempedido_fk) references item_pedido(cod_itempedido)
+ );
+ 
+ -- ler (read) os dados de uma tabela
+ select * from cliente;
+ describe cliente;
+ 
+ -- inserir os dados na tabela
+ insert into cliente(rg,nome,telefone,enderco_comp) values('MG-99.999.999','Letícia Franca','(31)4002-8922','Rua das Acácias, 110 - Esmeraldas - Brasil');
