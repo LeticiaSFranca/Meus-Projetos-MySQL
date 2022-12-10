@@ -1,0 +1,78 @@
+create database hotel_2e1_29;
+use hotel_2e1_29;
+
+create table cliente(
+cod integer not null primary key auto_increment,
+nome varchar (80) not null,
+cpf int not null,
+tipo_convenio varchar(40) not null
+);
+
+create table reserva(
+cod integer not null primary key auto_increment,
+data_inicio date not null,
+data_fim date not null,
+quarto int not null,
+valor decimal (9,2),
+cod_cliente_fk integer not null,
+foreign key (cod_cliente_fk) references data_inicio(data_inicio)
+);
+
+create table hospede(
+cod integer not null primary key auto_increment,
+nome varchar (80) not null,
+reserva_cod integer not null,
+foreign key (reserva_cod) references reserva(reserva_cod),
+telefone char(15),
+email varchar(60)
+);
+
+create table quarto(
+cod integer not null primary key auto_increment,
+numero int not null,
+andar int not null,
+classificacao varchar (40) not null,
+cod_hospede_fk integer not null,
+foreign key (cod_hospede_fk) references hospede(cod_hospede)
+);
+
+create table servicos(
+cod integer not null primary key auto_increment,
+itens varchar (50) not null,
+tipo varchar(50) not null,
+observacao varchar(100) not null,
+quarto_cod_fk integer not null,
+foreign key (quarto_cod_fk) references quarto(quarto_cod_fk),
+servico_copa_code_fk integer not null,
+foreign key (servico_copa_code_fk) references servicos(servico_copa_code_fk)
+);
+
+select * from cliente;
+insert into cliente(nome, cpf, tipo_convenio) values
+("Aline Aguiar", 10000000000, "Simples"),
+("Bernardo Bernardes", 20000000000, "Premium"),
+("Carlos Cretas", 30000000000, "Simples");
+
+select * from reserva;
+insert into reserva(data_inicio, data_fim, quarto, valor, cod_cliente_fk) values
+("17/03/2006", "28/06/2022", 4, 15.00, 1),
+("09/03/2006", "27/06/2022", 5, 20.00, 2),
+("06/06/2006", "26/06/2022", 6, 25.00, 3);
+
+select * from hospede;
+insert into hospede(nome, reserva_cod, telefone, email) values
+("Letícia França", 1, 91234-1234, "leticia@gmail.com"),
+("Lucas Sena", 2, 94321-4321, "lucas@gmail.com"),
+("Arthur Chagas", 3, 99876-9876, "arthur@gmail.com");
+
+select * from quarto;
+insert into quarto(numero, andar, classficacao, cod_hospede_fk) values
+(1, 1, "Muito Bom", 1),
+(2, 2, "Bom", 2),
+(3, 3, "Ruim", 3);
+
+select * from servicos;
+insert into servicos(itens, tipo, observacao, quarto_cod_fk, servico_copa_code_fk) value
+("item1", "flor", "nenhuma", 1, 1),
+("item2", "ferramenta", "Com Defeito", 2, 2),
+("item3", "papelaria", "Ótimo", 3, 3);
