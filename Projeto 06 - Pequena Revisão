@@ -1,0 +1,14 @@
+select * from cliente order by nome; -- comando ORDER BY serve para colocar na ordem os elementos, alfabetica ou numerica crescente
+delete from cliente where rg = 'mg99.999.999'; -- comando para excluir um registro da tabela
+update cliente set nome = 'Astolfo Texeira' where rg = 'mg39.999.999'; -- comando para atualizar uma informação da tabela.
+
+select * from produto order by cod_produto; -- seleciona todos os registros da tabela produto e ordena o cod_produto em ordem crescente
+delete from produto where cod_produto = 10; -- exclui o resgistro onde a chave primária for 10
+update produto set preco = 21.30 where cod_produto = 6; -- atualiza o preco de um produto, utilizando a chave primaria cod_produto como identificador
+
+insert into produto values (default,'girassol','flor',17.30,26);
+insert into produto values
+(default,'margarida','flor',24.30,18),
+(default,'narciso','flor',14.99,30),
+(default,'Papoula','flor',78.30,5);
+
