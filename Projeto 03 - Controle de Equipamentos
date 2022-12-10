@@ -1,0 +1,42 @@
+create database controle_equipamentos_2E1;
+use controle_equipamentos_2E1;
+
+create table equipamentos(
+cod_equipamentos int not null primary key auto_increment,
+tipo_equipamento varchar(20) not null,
+cod_departamento_fk int not null,
+foreign key (cod_departamento_fk) references departamento(cod_departamento)
+);
+
+create table departamento(
+cod_departamento int not null primary key auto_increment,
+nome varchar(80) not null,
+andar tinyint not null,
+funcao varchar(20) not null
+);
+
+create table chefe(
+matricula int not null primary key auto_increment,
+nome varchar(80) not null,
+dt_nasc date not null,
+cpf char(14) not null,
+cod_departamento_fk int not null,
+foreign key (cod_departamento_fk) references departamento(cod_departamento)
+);
+
+create table manutencao(
+cod_manutencao int not null primary key auto_increment,
+dt_manutencao date not null,
+observacao varchar(130) not null,
+cod_equipamentos_fk int not null,
+foreign key (cod_equipamentos_fk) references equipamentos(cod_equipamentos_fk)
+);
+
+create table manutencao_equipamento(
+cod_manutencao_equipamento int not null primary key auto_increment,
+dt_manutencao date not null,
+equipamento_cod_equipamento_fk int not null,
+foreign key (equipamento_cod_equipamento_fk) references equipamentos(cod_equipamentos_fk),
+manutencao_cod_manutencao_fk int not null,
+foreign key (manutencao_cod_manutencao_fk) references manutencao(cod_manutencao_fk)
+);
